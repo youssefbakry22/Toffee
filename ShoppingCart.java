@@ -1,28 +1,24 @@
-
 public class ShoppingCart {
     private Item[] items;
 
     public ShoppingCart() {
-
+        this.items = new Item[100];
     }
 
-    public void add_item(Item item) {
-        // add item to cart
+    public Item[] get_items() {
+        // implementation of ShoppingCart.get_items
     }
 
-    public void remove_item(String name) {
-        // remove item from cart
+    public void add_item(Item item, double quantity) {
+        // implementation of ShoppingCart.add_item
     }
 
     public void display_items() {
-        for (Item item : items) {
-            System.out.println(item); // calls the toString() method of the class Item to print the item
-                                      // it should be overridden in the Item class
-        }
+        // implementation of ShoppingCart.display_items
     }
 
-    public double calc_total_price() {
-        // calculate total price of items in cart
-        return 0.0;
+    public boolean is_empty() {
+        // implementation of ShoppingCart.is_empty
     }
+
 }

@@ -3,11 +3,6 @@ public class LoggedInUser {
     private String email;
     private String password;
     private String address;
-    private String phone;
-    private String country;
-    private boolean active = true;
-    private double loyalty_points;
-    private int gift_vouchers;
     private ShoppingCart cart;
     private Order[] orders;
 
@@ -17,51 +12,43 @@ public class LoggedInUser {
         this.password = password;
         this.address = address;
         this.cart = new ShoppingCart();
+        this.orders = new Order[100];
     }
 
-    public void update_user_info(String user_name, String password) {
-        // implementation of updating user info
+    public String get_user_name() {
+        // implementation of LoggedInUser.get_user_name
     }
 
-    public void forget_password(String email) {
-        // implementation of forget password
+    public String get_email() {
+        // implementation of LoggedInUser.get_email
     }
 
-    public void add_loyalty_points(double loyalty_points) {
-        // implementation of adding loyalty points
+    public String get_password() {
+        // implementation of LoggedInUser.get_password
     }
 
-    public void add_gift_vouchers(int gift_vouchers) {
-        // implementation of adding gift vouchers
+    public String get_address() {
+        // implementation of LoggedInUser.get_address
     }
 
-    public void add_item_toCart(Item item) {
-        // implementation of adding item to cart
+    public ShoppingCart get_shopping_cart() {
+        // implementation of LoggedInUser.get_shopping_cart
     }
 
-    public void remove_item_fromCart(String name) {
-        // implementation of removing item from cart
+    public void set_password(String password) {
+        // implementation of LoggedInUser.set_password
     }
 
     public void view_shopping_cart() {
-        // implementation of viewing shopping cart
+        // implementation of LoggedInUser.view_shopping_cart
     }
 
-    public boolean place_order() {
-        // implementation of placing an order
-        return true;
+    public boolean add_order(Order order) {
+        // implementation of LoggedInUser.add_order
     }
 
-    public void checkout() {
-        // implementation of checkout
-    }
-
-    public void view_orders_history() {
-        // implementation of viewing orders history
-    }
-
-    public boolean reorder(Order order) {
-        // implementation of reordering
-        return true;
+    public void checkout(int order_id) {
+        // implementation of LoggedInUser.checkout
+        // it just sets the order status to "checked out"
     }
 }

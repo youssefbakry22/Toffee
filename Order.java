@@ -1,34 +1,37 @@
 public class Order {
     private int id;
-    private String customer_name;
-    private Item[] items;
-    private double total_price;
     private String status;
+    private double total_price;
+    private Item[] items;
 
-    public Order(int id, Item[] items, String status) {
+    public Order(int id, String status, Item[] items) {
         this.id = id;
-        this.items = items;
-        this.total_price = 0.0;
         this.status = status;
+        this.items = items;
+        this.total_price = calc_total_price();
     }
 
     public int get_id() {
-        return this.id;
-    }
-
-    public String get_customer_name() {
-        return this.customer_name;
+        // implementation of Order.get_id
     }
 
     public String get_status() {
-        return this.status;
+        // implementation of Order.get_status
+    }
+
+    public double get_total_price() {
+        // implementation of Order.get_total_price
     }
 
     public void set_id(int id) {
-        this.id = id;
+        // implementation of Order.set_id
     }
 
     public void set_status(String status) {
-        this.status = status;
+        // implementation of Order.set_status
+    }
+
+    public double calc_total_price() {
+        // implementation of Order.calc_total_price
     }
 }
