@@ -1,48 +1,61 @@
-import java.util.ArrayList;
-
-public class Order {
+public class Item {
+    private String name;
     private int id;
-    private String status;
-    private double total_price;
-    private ArrayList<Item>  items;
+    private String description;
+    private String category;
+    private String unit;
+    private double quantity;
+    private double price;
 
-    public Order(int id, String status, ArrayList<Item> items) {
+    public Item(String name, int id, String description, String category, String unit, double quantity,
+            double price) {
+        this.name = name;
         this.id = id;
-        this.status = status;
-        this.items = items;
-        this.total_price = calc_total_price();
+        this.description = description;
+        this.category = category;
+        this.unit = unit;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String get_name() {
+        return this.name;
     }
 
     public int get_id() {
-        // implementation of Order.get_id
-        return id;
+        return this.id;
     }
 
-    public String get_status() {
-        // implementation of Order.get_status
-        return status;
+    public String get_description() {
+        return this.description;
     }
 
-    public double get_total_price() {
-        // implementation of Order.get_total_price
-        return total_price;
+    public String get_category() {
+        return this.category;
     }
 
-    public void set_id(int id) {
-        // implementation of Order.set_id
-        this.id=id;
+    public String get_unit() {
+        return this.unit;
     }
 
-    public void set_status(String status) {
-        // implementation of Order.set_status
-        this.status=status;
+    public double get_quantity() {
+        return this.quantity;
     }
 
-    public double calc_total_price() {
-        // implementation of Order.calc_total_price
-        for(int i=0;i<items.size();i++){
-            total_price+=items[i].get_price()*items[i].get_quantity();
-        }
-        return total_price;
+    public double get_price() {
+        return this.price;
+    }
+
+    public void set_quantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "\tItem: " + this.name
+                + "\n\t" + "ID: " + this.id
+                + "\n\t" + "Description: " + this.description
+                + "\n\t" + "Unit: " + this.unit
+                + "\n\t" + "Price: " + "$" + this.price + "\n\t";
     }
 }
