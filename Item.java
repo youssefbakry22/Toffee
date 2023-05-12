@@ -2,12 +2,12 @@ public class Item {
     private String name;
     private int id;
     private String description;
-    private Category category;
+    private String category;
     private String unit;
     private double quantity;
     private double price;
 
-    public Item(String name, int id, String description, Category category, String unit, double quantity,
+    public Item(String name, int id, String description, String category, String unit, double quantity,
             double price) {
         this.name = name;
         this.id = id;
@@ -30,7 +30,7 @@ public class Item {
         return this.description;
     }
 
-    public Category get_category() {
+    public String get_category() {
         return this.category;
     }
 
@@ -46,10 +46,16 @@ public class Item {
         return this.price;
     }
 
+    public void set_quantity(double quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        return "Item: " + this.name + "\n" + "ID: " + this.id + "\n" + "Description: " + this.description + "\n"
-                + "Category: " + this.category + "\n" + "Unit: " + this.unit + "\n" + "Quantity: " + this.quantity
-                + "\n" + "Price: " + this.price + "\n";
+        return "\tItem: " + this.name
+                + "\n\t" + "ID: " + this.id
+                + "\n\t" + "Description: " + this.description
+                + "\n\t" + "Unit: " + this.unit
+                + "\n\t" + "Price: " + "$" + this.price + "\n\t";
     }
 }

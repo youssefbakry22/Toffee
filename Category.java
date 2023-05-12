@@ -12,27 +12,27 @@ public class Category {
         return this.name;
     }
 
+    public String get_all_items_ids() {
+        String all_items_id = "";
+        for (Item item : items) {
+            if (item != null) {
+                all_items_id += item.get_id() + ",";
+            }
+        }
+        all_items_id = all_items_id.substring(0, all_items_id.length() - 1);
+        return all_items_id;
+    }
+
     public void set_name(String name) {
         this.name = name;
     }
 
-    public void add_item(Item item) { //add item
-        for(int i = 0 ; i < this.items.length ; i++)
-        {
-            if(this.items[i] == null) //if current index is empty.
-            {
-                this.items[i] = item ;
-                break;
+    public void display_items() {
+        for (Item item : items) { // for each item in items_array.
+            if (item != null) { // if current index is not empty .
+                System.out.println(item);
             }
         }
     }
 
-    public void display_items() {
-        System.out.println("Items that is in Category: " + this.name);
-        for (Item item : items) { //for each item in items_array.
-            if (item != null) { //if current index is not empty .
-            System.out.println(item);
-            }
-    }
-}
 }
