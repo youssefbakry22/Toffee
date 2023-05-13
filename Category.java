@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 
 public class Category {
     private String name;
-    private Item[] items;
+    private ArrayList<Item> items;
 
-    public Category(String name, Item[] items) {
+    public Category(String name, ArrayList<Item> items) {
         this.name = name;
         this.items = items;
     }
@@ -15,11 +16,9 @@ public class Category {
     public String get_all_items_ids() {
         String all_items_id = "";
         for (Item item : items) {
-            if (item != null) {
-                all_items_id += item.get_id() + ",";
-            }
+            all_items_id += item.get_id() + ",";
         }
-        all_items_id = all_items_id.substring(0, all_items_id.length() - 1);
+        all_items_id = all_items_id.substring(0, all_items_id.length() - 1); // remove the last comma
         return all_items_id;
     }
 
@@ -29,9 +28,7 @@ public class Category {
 
     public void display_items() {
         for (Item item : items) { // for each item in items_array.
-            if (item != null) { // if current index is not empty .
-                System.out.println(item);
-            }
+            System.out.println(item);
         }
     }
 

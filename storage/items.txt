@@ -1,0 +1,17 @@
+English Butter Toffee,1,A classic toffee made with butter and sugar coated in milk chocolate and crushed almonds.,Toffee,pound,12.99
+Dark Chocolate Toffee,2,A rich toffee made with dark chocolate and sprinkled with sea salt.,Toffee,pound,14.99
+Almond Toffee,3,A crunchy toffee made with almonds and coated in milk chocolate.,Toffee,pound,13.99
+Chocolate Fudge,4,A smooth and creamy fudge made with rich chocolate.,Fudge,pound,9.99
+Peanut Butter Fudge,5,A creamy fudge made with peanut butter and topped with peanuts.,Fudge,pound,10.99
+Maple Walnut Fudge,6,A sweet and nutty fudge made with maple syrup and walnuts.,Fudge,pound,11.99
+Sea Salt Caramel,7,A buttery caramel with a touch of sea salt for the perfect balance of sweet and salty.,Caramel,piece,1.5
+Vanilla Caramel,8,A classic caramel with a smooth vanilla flavor.,Caramel,piece,1.25
+Chocolate Caramel,9,A decadent caramel made with rich chocolate for a deliciously indulgent treat.,Caramel,piece,1.5
+Gummy Bears,10,A colorful and fruity gummy candy in the shape of bears.,Candy,pound,7.99
+Sour Patch Kids,11,A tangy and sweet gummy candy in the shape of kids coated in sour sugar.,Candy,pound,8.99
+Jelly Beans,12,A classic candy with a variety of fruity flavors and a chewy texture.,Candy,pound,6.99
+Licorice,13,A classic candy with a bold and distinct licorice flavor and a chewy texture.,Candy,pound,5.99
+Chocolate Chip Cookie,14,A soft and chewy cookie made with rich chocolate chips.,Cookie,pound,2.99
+Oatmeal Raisin Cookie,15,A soft and chewy cookie made with hearty oats and sweet raisins.,Cookie,pound,2.99
+Sugar Cookie,16,A soft and chewy cookie made with sugar and vanilla.,Cookie,pound,2.99
+Snickerdoodle Cookie,17,A soft and chewy cookie made with cinnamon and sugar.,Cookie,pound,2.99

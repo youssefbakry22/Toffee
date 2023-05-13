@@ -1,86 +1,200 @@
+import java.util.ArrayList;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.*;
+
 public class AppSystem {
-    private LoggedInUser[] users;
-    private Item[] items;
-    private Category[] categories;
-    private Order[] orders;
-    private Admin[] admins;
+    private ArrayList<LoggedInUser> users;
+    private ArrayList<Item> items;
+    private ArrayList<Category> categories;
+    private ArrayList<Order> orders;
     private Storage storage;
     private int otp;
 
     public AppSystem() {
-        this.users = new LoggedInUser[100];
-        this.items = new Item[100];
-        this.categories = new Category[100];
-        this.orders = new Order[100];
-        this.admins = new Admin[100];
+        this.users = new ArrayList<LoggedInUser>();
+        this.items = new ArrayList<Item>();
+        this.categories = new ArrayList<Category>();
+        this.orders = new ArrayList<Order>();
         this.storage = new Storage();
-
-        // load system data
-        this.load_system_data();
     }
 
-    public boolean validate_credentials(String user_name, String password) {
-        // validate credentials code
-        return true;
+    public Item get_item(String name) {
+        for (Item item : items) {
+            if (item.get_name().equals(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 
-    public void add_user(LoggedInUser user) {
-        // add user code
+    public Item get_item_by_id(int id) {
+        for (Item item : items) {
+            if (item.get_id() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public Order get_order_by_id(int id) {
+        for (Order order : orders) {
+            if (order.get_id() == id) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    public LoggedInUser get_user(String user_name) {
+        for (LoggedInUser user : users) {
+            if (user.get_user_name().equals(user_name)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public boolean exists_user_name(String user_name) {
+        for (LoggedInUser user : users) {
+            if (user.get_user_name().equals(user_name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean exists_email(String email) {
+        for (LoggedInUser user : users) {
+            if (user.get_email().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean exists_item(int id) {
+        for (Item item : items) {
+            if (item.get_id() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean exists_item(String name) {
+        for (Item item : items) {
+            if (item.get_name().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void add_user(LoggedInUser new_user) {
+        this.users.add(new_user);
     }
 
     public void add_item(Item item) {
-        // add item code
+        this.items.add(item);
     }
 
     public void add_category(Category category) {
-        // add category code
+        this.categories.add(category);
     }
 
     public void add_order(Order order) {
-        // add order code
+        this.orders.add(order);
     }
 
-    public void add_admin(Admin admin) {
-        // add admin code
+    public void modify_user(String user_name, String new_password) {
+        for (LoggedInUser user : users) {
+            if (user.get_user_name().equals(user_name)) {
+                user.set_password(new_password);
+                break;
+            }
+        }
+    }
+
+    public boolean validate_credentials(String user_name, String password) {
+        for (LoggedInUser user : users) {
+            if (user.get_user_name().equals(user_name) &&
+                    user.get_password().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Order make_order(ArrayList<Item> items) {
+        int order_id = orders.size() + 1;
+        Order order = new Order(order_id, "pending", items);
+        this.orders.add(order);
+        return order;
+    }
+
+    public void update_order_status(int order_id, String status) {
+        for (Order order : orders) {
+            if (order.get_id() == order_id) {
+                order.set_status(status);
+                break;
+            }
+        }
     }
 
     public Catalog create_catalog() {
-        // create catalog code
-        return new Catalog(categories);
-    }
-
-    public void modify_user(String user_name) {
-        // modify user code
-    }
-
-    public void modify_item(int item_id) {
-        // modify item code
-    }
-
-    public void modify_category(String category_name) {
-        // modify category code
-    }
-
-    public void save_system_data() {
-        storage.save_data(users, orders, items, categories, admins);
+        Catalog catalog = new Catalog(categories);
+        return catalog;
     }
 
     public void load_system_data() {
-        storage.load_data(users, orders, items, categories, admins);
+        storage.load_data(this);
     }
 
-    public void apply_loyalty_points(double loyalty_points) {
-        // apply loyalty points code
+    public void save_system_data() {
+        storage.save_data(users, orders, items, categories);
     }
 
-    public int send_OTP_email(String email) {
+    public void send_OTP_email(String email) {
+        otp = 1000 + (int) (Math.random() * ((9999 - 1000) + 1));
+        String host = "smtp.gmail.com";
+        String port = "587";
+        String username = "toffe.store.1@gmail.com";
+        String password = "uhmtzbtwvvgeuhuf";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            String to = email;
+            String subject = "OTP Verification";
+            String message = "Your OTP is " + this.otp;
+
+            // Create the email message
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(username));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            msg.setSubject(subject);
+            msg.setText(message);
+
+            Transport.send(msg);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void send_OTP_phone(String phone) {
         otp = 1234;
-        return otp;
-    }
-
-    public int send_OTP_phone(String phone) {
-        otp = 1234;
-        return otp;
     }
 
     public boolean verify_OTP(int otp) {

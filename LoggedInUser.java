@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class LoggedInUser {
     private String user_name;
     private String email;
@@ -12,56 +14,61 @@ public class LoggedInUser {
         this.password = password;
         this.address = address;
         this.cart = new ShoppingCart();
-        this.orders = new ArrayList<Order>(100);
+        this.orders = new ArrayList<Order>();
     }
 
     public String get_user_name() {
-        // implementation of LoggedInUser.get_user_name
-        return user_name;
+        return this.user_name;
     }
 
     public String get_email() {
-        // implementation of LoggedInUser.get_email
-        return email;
+        return this.email;
     }
 
     public String get_password() {
-        // implementation of LoggedInUser.get_password
-        return password;
+        return this.password;
     }
 
     public String get_address() {
-        // implementation of LoggedInUser.get_address
-        return address;
+        return this.address;
     }
 
     public ShoppingCart get_shopping_cart() {
-        // implementation of LoggedInUser.get_shopping_cart
-        return cart;
+        return this.cart;
+    }
+
+    // this method is used to get all the orders ids in a string separated by comma
+    // it is used to save the orders in the database of "user"
+    public String get_all_orders_ids() {
+        String orders_id = "";
+        for (Order order : orders) {
+            orders_id += order.get_id() + ",";
+        }
+        if (orders_id == "") {
+            return orders_id;
+        }
+        orders_id = orders_id.substring(0, orders_id.length() - 1); // remove the last comma
+        return orders_id;
     }
 
     public void set_password(String password) {
-        // implementation of LoggedInUser.set_password
-        this.password=passwod;
+        this.password = password;
     }
 
     public void view_shopping_cart() {
-        // implementation of LoggedInUser.view_shopping_cart
-        cart.display_items();
+        this.cart.display_items();
     }
 
     public void add_order(Order order) {
-        // implementation of LoggedInUser.add_order
-        orders.add(order);
+        this.orders.add(order);
     }
 
     public void checkout(int order_id) {
-        // implementation of LoggedInUser.checkout
-        // it just sets the order status to "checked out"
-        for(int i=0;i<orders.size();i++){
-            if(orders[i].get_id()==order_id){
-                orders[i].set_status("placed");
+        for (Order order : orders) {
+            if (order.get_id() == order_id) {
+                order.set_status("checked out");
             }
         }
     }
+
 }

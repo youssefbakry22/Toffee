@@ -1,8 +1,8 @@
-// Purpose: Main class for Toffee web application
+// Main class for Toffee application
 
 public class Toffee {
     public static void main(String[] args) {
-        WebApp webapp = new WebApp();
-        webapp.start();
+        App app = new App();
+        app.start();
     }
 }
