@@ -1,18 +1,28 @@
 import java.util.ArrayList;
 import java.io.*;
 
+/**
+ * This class is responsible for saving and loading data.
+ * 
+ * @author Youssef Bakry
+ * @version 1.0
+ * @since 2023-5-7
+ */
 public class Storage {
     private final String USERS_FILE = "storage/users.txt";
     private final String ORDERS_FILE = "storage/orders.txt";
     private final String ITEMS_FILE = "storage/items.txt";
     private final String CATEGORIES_FILE = "storage/categories.txt";
 
-    public void save_data(ArrayList<LoggedInUser> users, ArrayList<Order> orders, ArrayList<Item> items,
+    /**
+     * This method saves the data of the system in the files.
+     */
+    public void save_data(ArrayList<User> users, ArrayList<Order> orders, ArrayList<Item> items,
             ArrayList<Category> categories) {
         try {
             // save users
             PrintWriter writer = new PrintWriter(new FileWriter(USERS_FILE));
-            for (LoggedInUser user : users) {
+            for (User user : users) {
                 writer.println(encrypt_decrypt(user.get_user_name() + "," + user.get_email() + ","
                         + user.get_password() + ","
                         + user.get_address(), 10));
@@ -54,6 +64,9 @@ public class Storage {
 
     // =======================================================================================================
 
+    /**
+     * This method loads the data of the system from the files.
+     */
     public void load_data(AppSystem system) {
         try {
             String line;
@@ -106,7 +119,7 @@ public class Storage {
                 String email = user_data[1];
                 String password = user_data[2];
                 String address = user_data[3];
-                LoggedInUser user = new LoggedInUser(user_name, email, password, address);
+                User user = new User(user_name, email, password, address);
 
                 String[] shopping_cart_items_ids = reader.readLine().split(",");
                 for (String item_id : shopping_cart_items_ids) {
@@ -152,9 +165,13 @@ public class Storage {
 
     // =======================================================================================================
 
-    // basic encrypt and decrypt password detrmined by key
-    // if key positive then encrypt
-    // if key negative then decrypt
+    /**
+     * basic encrypt and decrypt detrmined by key
+     * 
+     * @param str
+     * @param key
+     * @return encrypted string if key postive, decrypted string if key negative
+     */
     public static String encrypt_decrypt(String str, int key) {
         StringBuilder result = new StringBuilder(); // mutable string which can be changed unlike String class
         for (int i = 0; i < str.length(); i++) {

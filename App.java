@@ -1,19 +1,31 @@
 import java.util.Scanner;
 import java.io.Console;
 
+/**
+ * This class represents the interface through which users will interact with
+ * the system.
+ * 
+ * @author Youssef Bakry
+ * @version 1.0
+ * @since 2023-5-7
+ */
 public class App {
     private AppSystem system;
-    private LoggedInUser user;
+    private User user;
     Scanner sc = new Scanner(System.in);
     Console console = System.console();
 
-    // constructor
+    /**
+     * constructor of the class
+     */
     App() {
         system = new AppSystem(); // create a new system
         system.load_system_data(); // load data from files to the system
     }
 
-    // start point of the application
+    /**
+     * the intial point of the program
+     */
     public void start() {
         clear_screen();
         String choice = main_menu();
@@ -50,7 +62,11 @@ public class App {
         }
     }
 
-    // main menu or home page
+    /**
+     * main menu or home page
+     * 
+     * @return String this is the choice of the user
+     */
     public String main_menu() {
         print("                     Welcome to Toffee store! ");
         print("__________________________________________________________________\n");
@@ -65,6 +81,11 @@ public class App {
         return choice;
     }
 
+    /**
+     * shopping menu
+     * 
+     * @return String this is the choice of the user
+     */
     // shopping menu
     public String shopping_menu() {
         print("                           Toffee Store  ");
@@ -81,7 +102,9 @@ public class App {
         return choice;
     }
 
-    //
+    /**
+     * this method is used to move user to the shopping page after login
+     */
     public void go_shopping() {
         clear_screen();
         String choice = shopping_menu();
@@ -202,6 +225,11 @@ public class App {
         }
     }
 
+    /**
+     * this method is used to login the user to the system
+     * 
+     * @return boolean
+     */
     // user login
     public boolean user_login() {
         int n_tries = 3;
@@ -252,7 +280,9 @@ public class App {
         return false;
     }
 
-    // user registration
+    /**
+     * this method is used register the user to the system
+     */
     public void user_registration() {
         clear_screen();
         print("                             Registration Page  ");
@@ -323,7 +353,7 @@ public class App {
             if (system.verify_OTP(otp)) {
                 print("__________________________________________________________________\n");
 
-                this.user = new LoggedInUser(user_name, email, password, address);
+                this.user = new User(user_name, email, password, address);
                 system.add_user(user);
 
                 print("Registration successful!");
@@ -339,7 +369,11 @@ public class App {
         start();
     }
 
-    // reset password if user forgets password
+    /**
+     * reset password if user forgets password
+     * 
+     * @param user_name
+     */
     public void forget_password(String user_name) {
         int otp_tries = 3;
 
@@ -381,7 +415,11 @@ public class App {
         }
     }
 
-    // wait for n seconds before doing something
+    /**
+     * wait for n seconds before doing something
+     * 
+     * @param seconds
+     */
     public void wait(int seconds) {
         try {
             Thread.sleep(seconds * 1000);
@@ -391,12 +429,19 @@ public class App {
         }
     }
 
-    // clear screen
+    /**
+     * clear screen in terminal
+     */
     public void clear_screen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    /**
+     * shortcut for System.out.println()
+     * 
+     * @param s
+     */
     // print
     public void print(String s) {
         System.out.println(s);
